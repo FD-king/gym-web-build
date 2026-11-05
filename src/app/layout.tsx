@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
+import { Suspense } from "react";
+import { PlanProvider } from "./context/PlanContext";
+import { ToastContainer } from "react-toastify/unstyled";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,7 +29,35 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col bg-[#0E1014]">
+        <PlanProvider>
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              duration: 3000,
+              style: {
+                background: "#15171D",
+                color: "#FFFFFF",
+                border: "1px solid #252830",
+                borderRadius: "12px",
+                fontSize: "13px",
+              },
+              success: {
+                iconTheme: {
+                  primary: "#C2F800",
+                  secondary: "#0E1014",
+                },
+              },
+            }}
+          />
+          <ToastContainer />
+          <NavBar />
+          <div>{children}</div>
+          <Suspense fallback="">
+            <Footer />
+          </Suspense>
+        </PlanProvider>
+      </body>
     </html>
   );
 }
