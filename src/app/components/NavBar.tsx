@@ -3,6 +3,7 @@ import Link from "next/link";
 import ButtonHighlight from "./buttonHighlight";
 import NavbarCounts from "./navbarCounts";
 import { Suspense } from "react";
+import { HiOutlineMenuAlt1 } from "react-icons/hi";
 
 const NavBar = () => {
   return (
@@ -12,27 +13,18 @@ const NavBar = () => {
         <div className="navbar-start">
           {/* Mobile Dropdown */}
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <svg
-                aria-label="Menu"
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost text-white hover:bg-[#252A34] lg:hidden"
+              aria-label="Open navigation menu"
+            >
+              <HiOutlineMenuAlt1 size={25} className="text-white" />
             </div>
 
             <ul
               tabIndex={-1}
-              className="menu menu-sm dropdown-content z-1 mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
+              className="menu menu-sm dropdown-content z-1 mt-3 w-52 rounded-box bg-[#15171D] p-2 text-white shadow"
             >
               <Suspense fallback={<li>Loading...</li>}>
                 <ButtonHighlight />
